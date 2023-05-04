@@ -18,13 +18,15 @@ import com.example.instagramclone.UserPreferences
 import com.example.instagramclone.utils.ViewModelFactory
 import com.example.instagramclone.databinding.ActivityMainBinding
 import com.example.instagramclone.models.AuthViewModel
+import java.util.regex.Pattern
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-//    private val mainViewModel by viewModels<MainViewModel>()
+    private val emailPattern = Pattern.compile("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")
+
 
 
     companion object {
