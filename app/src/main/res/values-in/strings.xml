@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Storygram</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="login_button_text">Masuk</string>
+    <string name="username_hint">Username</string>
+    <string name="register_button_text">Daftar</string>
+    <string name="camera_x">CameraX</string>
+    <string name="camera">Kamera</string>
+    <string name="gallery">Galeri</string>
+    <string name="upload">Unggah</string>
+    <string name="description_hint">Deskripsi</string>
+    <string name="logout_button_text">Keluar</string>
+    <string name="tagline">Daftar untuk melihat cerita dari teman-teman mu!</string>
+    <string name="post_headline">Bagikan cerita anda</string>
+    <string name="text_back_button">Tombol kembali</string>
+    <string name="text_to_register">Belum punya akun?&#160;</string>
+    <string name="content_desc_post_button">Tombol membagi cerita</string>
+    <string name="text_to_login">Sudah punya akun?&#160;</string>
+</resources>

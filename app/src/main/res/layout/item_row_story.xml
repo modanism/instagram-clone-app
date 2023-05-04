@@ -20,7 +20,8 @@
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
             card_view:layout_constraintBottom_toTopOf="@id/tv_item_author"
-            tools:src="@tools:sample/backgrounds/scenic" />
+            tools:src="@tools:sample/backgrounds/scenic"
+            android:transitionName="image"/>
         <TextView
             android:id="@+id/tv_item_author"
             android:layout_width="0dp"
@@ -35,7 +36,7 @@
             card_view:layout_constraintTop_toBottomOf="@+id/img_item_photo"
             card_view:layout_constraintBottom_toTopOf="@+id/tv_item_date"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toStartOf="parent"/>
+            card_view:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/tv_item_date"

@@ -38,6 +38,7 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
         }
     }
 
+
     companion object {
         @Volatile
         private var INSTANCE: UserPreferences? = null

@@ -5,12 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
-
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
@@ -42,6 +41,11 @@
                         android:text="@string/app_name"
                         android:textColor="@color/black"
                         android:textSize="24sp" />
+                    <Button
+                        android:id="@+id/action_logout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/logout_button_text"/>
 
                 </LinearLayout>
 
@@ -86,6 +90,7 @@
         android:src="@drawable/ic_add"
         android:tintMode="@color/white"
         app:fabSize="normal"
+        android:contentDescription="@string/content_desc_post_button"
         />
 
 

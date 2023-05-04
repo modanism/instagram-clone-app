@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".activities.LoginActivity">
 
     <TextView
         android:id="@+id/tv_app_name"
@@ -47,6 +47,7 @@
             android:paddingHorizontal="16dp"
             android:background="@drawable/edit_text_background"
             />
+
     </LinearLayout>
 
     <LinearLayout
@@ -73,13 +74,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Don't have an account? " />
+                android:text="@string/text_to_register" />
 
             <TextView
                 android:id="@+id/tv_to_register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Register"
+                android:text="@string/register_button_text"
                 android:textStyle="bold"
                 android:textColor="@color/blue"/>
 
