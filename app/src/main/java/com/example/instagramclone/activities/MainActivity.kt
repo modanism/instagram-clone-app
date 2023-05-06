@@ -2,22 +2,22 @@ package com.example.instagramclone.activities
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AppCompatActivity
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.instagramclone.ListStoryItem
-import com.example.instagramclone.models.MainViewModel
-import com.example.instagramclone.adapters.StoryAdapter
 import com.example.instagramclone.UserPreferences
-import com.example.instagramclone.utils.ViewModelFactory
+import com.example.instagramclone.adapters.StoryAdapter
 import com.example.instagramclone.databinding.ActivityMainBinding
 import com.example.instagramclone.models.AuthViewModel
+import com.example.instagramclone.models.MainViewModel
+import com.example.instagramclone.utils.ViewModelFactory
 import java.util.regex.Pattern
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")

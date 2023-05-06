@@ -3,7 +3,6 @@ package com.example.instagramclone
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
-import kotlinx.parcelize.RawValue
 
 data class StoryResponse(
 

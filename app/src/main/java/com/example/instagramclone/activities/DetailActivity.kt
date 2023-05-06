@@ -1,11 +1,11 @@
 package com.example.instagramclone.activities
 
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.StyleSpan
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.instagramclone.ListStoryItem
 import com.example.instagramclone.databinding.ActivityDetailBinding

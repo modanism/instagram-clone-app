@@ -1,43 +1,43 @@
 package com.example.instagramclone.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.content.Intent.ACTION_GET_CONTENT
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
-import android.content.Context
-import android.os.Build
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
-import com.example.instagramclone.network.responses.FileUploadResponse
 import com.example.instagramclone.UserPreferences
-import com.example.instagramclone.utils.ViewModelFactory
 import com.example.instagramclone.createCustomTempFile
 import com.example.instagramclone.databinding.ActivityPostBinding
 import com.example.instagramclone.models.AuthViewModel
 import com.example.instagramclone.network.ApiConfig
+import com.example.instagramclone.network.responses.FileUploadResponse
 import com.example.instagramclone.reduceFileImage
 import com.example.instagramclone.rotateFile
 import com.example.instagramclone.uriToFile
+import com.example.instagramclone.utils.ViewModelFactory
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
-import java.io.*
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.*
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 

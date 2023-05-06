@@ -2,12 +2,12 @@ package com.example.instagramclone.activities
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AppCompatActivity
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
@@ -15,10 +15,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.instagramclone.LoginResponse
 import com.example.instagramclone.LoginResult
 import com.example.instagramclone.UserPreferences
-import com.example.instagramclone.utils.ViewModelFactory
 import com.example.instagramclone.databinding.ActivityLoginBinding
 import com.example.instagramclone.models.AuthViewModel
 import com.example.instagramclone.network.ApiConfig
+import com.example.instagramclone.utils.ViewModelFactory
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

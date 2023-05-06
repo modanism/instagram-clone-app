@@ -30,6 +30,21 @@ class PasswordEditText : AppCompatEditText, View.OnTouchListener {
     private fun init() {
         setOnTouchListener(this)
 
+        addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+                // Do nothing.
+            }
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+
+            }
+            override fun afterTextChanged(s: Editable) {
+                error = if (s.length < 8) {
+                    "Input must be at least 8 characters"
+                } else {
+                    null
+                }
+            }
+        })
 
     }
 

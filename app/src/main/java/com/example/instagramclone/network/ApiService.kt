@@ -1,9 +1,9 @@
 package com.example.instagramclone.network
 
-import com.example.instagramclone.network.responses.FileUploadResponse
 import com.example.instagramclone.LoginResponse
-import com.example.instagramclone.network.responses.RegisterResponse
 import com.example.instagramclone.StoryResponse
+import com.example.instagramclone.network.responses.FileUploadResponse
+import com.example.instagramclone.network.responses.RegisterResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call

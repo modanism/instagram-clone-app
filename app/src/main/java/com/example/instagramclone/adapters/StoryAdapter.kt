@@ -2,7 +2,6 @@ package com.example.instagramclone.adapters
 
 import android.app.Activity
 import android.content.Intent
-import android.text.format.DateUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +29,6 @@ class StoryAdapter(private val listStory : List<ListStoryItem>) : RecyclerView.A
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val (photoUrl, createdAt, name, description, id) = listStory[position]
-
         holder.tvAuthorItem.text = name
         holder.tvDateItem.text = getElapsedTimeSinceDate(createdAt)
         Glide.with(holder.itemView.context)
@@ -57,19 +55,6 @@ class StoryAdapter(private val listStory : List<ListStoryItem>) : RecyclerView.A
         val ivItem : ImageView = view.findViewById(R.id.img_item_photo)
         val tvAuthorItem : TextView = view.findViewById(R.id.tv_item_author)
         val tvDateItem : TextView = view.findViewById(R.id.tv_item_date)
-    }
-
-
-    private fun formatDate(postedDate: String): String {
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
-        val date = dateFormat.parse(postedDate)
-        val time = date?.time
-
-        val now = System.currentTimeMillis()
-
-        val duration = time?.let { DateUtils.getRelativeTimeSpanString(it, now, DateUtils.SECOND_IN_MILLIS) }
-
-        return "Posted $duration"
     }
 
     fun getElapsedTimeSinceDate(dateString: String): String {
