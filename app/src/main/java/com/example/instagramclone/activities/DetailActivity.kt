@@ -37,11 +37,9 @@ class DetailActivity : AppCompatActivity() {
         if (storyData != null) {
 
             val caption = "${storyData.name} ${storyData.description}"
-            // Find the index of the start and end of the word you want to make bold
             val startIndex = caption.indexOf(storyData.name)
             val endIndex = startIndex + storyData.name.length
 
-            // Create a SpannableString and set a StyleSpan to the bold word
             val spannableString = SpannableString(caption)
             spannableString.setSpan(StyleSpan(1), startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 

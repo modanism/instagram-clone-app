@@ -25,8 +25,6 @@ private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(na
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val emailPattern = Pattern.compile("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")
-
 
 
     companion object {
@@ -82,15 +80,12 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        // Create a new instance of OnBackPressedCallback
         val onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                // Finish all activities and close the app
                 finishAffinity()
             }
         }
 
-        // Add the callback to the OnBackPressedDispatcher
         onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
 
     }
