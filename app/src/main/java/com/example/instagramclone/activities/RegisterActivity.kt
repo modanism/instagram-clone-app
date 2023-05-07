@@ -20,8 +20,6 @@ class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
 
-    private lateinit var registerButton : Button
-
     companion object {
         private const val TAG = "RegisterActivity"
     }
@@ -31,9 +29,19 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        checkErrorsAndEnableRegister()
-
         binding.apply {
+            if (edRegisterName.text.isNullOrEmpty()) {
+                edRegisterName.error = "Username must be at least 1 character long"
+            }
+
+            if (edRegisterEmail.text.isNullOrEmpty()) {
+                edRegisterEmail.error = "Invalid email format"
+            }
+
+            if (edRegisterPassword.text.isNullOrEmpty()) {
+                edRegisterPassword.error = "Password must be at least 8 characters"
+            }
+
             actionRegister.setOnClickListener {
                 val name = edRegisterName.text.toString()
                 val email = edRegisterEmail.text.toString()
@@ -41,13 +49,13 @@ class RegisterActivity : AppCompatActivity() {
 
                 register(name, email, password)
             }
+
             tvToLogin.setOnClickListener {
                 finish()
             }
 
             edRegisterName.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
                 }
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -60,9 +68,7 @@ class RegisterActivity : AppCompatActivity() {
                     } else {
                         edRegisterEmail.error = null
                     }
-                    checkErrorsAndEnableRegister()
                 }
-
             })
         }
 
@@ -71,36 +77,42 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun register(name: String, email: String, password: String) {
-        showLoading(true)
-        val client = ApiConfig.getApiService().register(name, email, password)
-        client.enqueue(object : Callback<RegisterResponse> {
-            override fun onResponse(
-                call: Call<RegisterResponse>,
-                response: Response<RegisterResponse>
-            ) {
-                val responseBody = response.body()
-                if (response.isSuccessful && responseBody != null && !responseBody.error) {
-                    Log.e(TAG, responseBody.toString())
-                    val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                    Toast.makeText(this@RegisterActivity, "User created", Toast.LENGTH_SHORT).show()
-                } else {
-                    showLoading(false)
-                    Toast.makeText(this@RegisterActivity, response.message(), Toast.LENGTH_SHORT)
-                        .show()
-                    Log.e(TAG, "onFailure: ${response.message()}")
+        if (name.isEmpty() || email.isEmpty() || password.isEmpty() || binding.edRegisterEmail.error != null || binding.edRegisterName.error != null|| binding.edRegisterPassword.error != null) {
+            Toast.makeText(this@RegisterActivity,"Invalid credentials", Toast.LENGTH_SHORT)
+                .show()
+        } else {
+            showLoading(true)
+            val client = ApiConfig.getApiService().register(name, email, password)
+            client.enqueue(object : Callback<RegisterResponse> {
+                override fun onResponse(
+                    call: Call<RegisterResponse>,
+                    response: Response<RegisterResponse>
+                ) {
+                    val responseBody = response.body()
+                    if (response.isSuccessful && responseBody != null && !responseBody.error) {
+                        Log.e(TAG, responseBody.toString())
+                        val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                        Toast.makeText(this@RegisterActivity, "User created", Toast.LENGTH_SHORT).show()
+                    } else {
+                        showLoading(false)
+                        Toast.makeText(this@RegisterActivity, response.message(), Toast.LENGTH_SHORT)
+                            .show()
+                        Log.e(TAG, "onFailure: ${response.message()}")
+                    }
                 }
-            }
 
-            override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
-                showLoading(false)
-                Toast.makeText(this@RegisterActivity, t.message.toString(), Toast.LENGTH_SHORT)
-                    .show()
-                Log.e(TAG, t.message.toString())
-            }
+                override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
+                    showLoading(false)
+                    Toast.makeText(this@RegisterActivity, t.message.toString(), Toast.LENGTH_SHORT)
+                        .show()
+                    Log.e(TAG, t.message.toString())
+                }
 
-        })
+            })
+        }
+
     }
 
     private fun showLoading(isLoading: Boolean) {
@@ -111,12 +123,4 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkErrorsAndEnableRegister() {
-        binding.apply {
-            val usernameError = edRegisterName.error
-            val emailError = edRegisterEmail.error
-            val passwordError = edRegisterPassword.error
-            actionRegister.isEnabled = !(emailError != null || passwordError != null || usernameError != null)
-        }
-    }
 }

@@ -30,8 +30,6 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
 
-    private var userCred : LoginResult = LoginResult()
-
     companion object {
         private const val TAG = "LoginActivity"
     }

@@ -7,7 +7,10 @@ import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import android.widget.Button
+import android.widget.EditText
 import androidx.appcompat.widget.AppCompatEditText
+import com.example.instagramclone.R
 
 class PasswordEditText : AppCompatEditText, View.OnTouchListener {
 
@@ -35,11 +38,10 @@ class PasswordEditText : AppCompatEditText, View.OnTouchListener {
 
             }
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-
             }
             override fun afterTextChanged(s: Editable) {
                 error = if (s.length < 8) {
-                    "Input must be at least 8 characters"
+                    "Password must be at least 8 characters"
                 } else {
                     null
                 }
