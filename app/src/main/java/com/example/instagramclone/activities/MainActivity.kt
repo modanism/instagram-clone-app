@@ -74,6 +74,15 @@ class MainActivity : AppCompatActivity() {
             startActivity(postIntent)
         }
 
+        binding.actionMap.setOnClickListener {
+            val mapIntent = Intent(this, MapsActivity::class.java)
+            mainViewModel.listStory.observe(this) {
+                mapIntent.putParcelableArrayListExtra("extra_story", ArrayList(it))
+            }
+            startActivity(mapIntent)
+
+        }
+
         binding.actionLogout.setOnClickListener {
             authViewModel.removeAuthSetting()
         }

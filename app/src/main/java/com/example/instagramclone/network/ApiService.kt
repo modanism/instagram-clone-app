@@ -12,7 +12,8 @@ import retrofit2.http.*
 interface ApiService {
     @GET("stories")
     fun getStories(
-        @Header("Authorization") token: String
+        @Header("Authorization") token: String,
+        @Query("location") location: Int? = 1
     ) : Call<StoryResponse>
 
     @FormUrlEncoded

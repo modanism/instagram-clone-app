@@ -28,7 +28,7 @@ class StoryAdapter(private val listStory : List<ListStoryItem>) : RecyclerView.A
     override fun getItemCount() = listStory.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val (photoUrl, createdAt, name, description, id) = listStory[position]
+        val (photoUrl, createdAt, name, description, id, lat, lon) = listStory[position]
         holder.tvAuthorItem.text = name
         holder.tvDateItem.text = getElapsedTimeSinceDate(createdAt)
         Glide.with(holder.itemView.context)
