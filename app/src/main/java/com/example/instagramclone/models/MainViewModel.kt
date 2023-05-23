@@ -4,8 +4,12 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.example.instagramclone.ListStoryItem
 import com.example.instagramclone.StoryResponse
+import com.example.instagramclone.database.StoryRepository
 import com.example.instagramclone.network.ApiConfig
 import retrofit2.Call
 import retrofit2.Callback
@@ -13,15 +17,19 @@ import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class MainViewModel : ViewModel() {
+class MainViewModel(repository: StoryRepository) : ViewModel() {
     private val _listStory = MutableLiveData<List<ListStoryItem>>()
     val listStory: LiveData<List<ListStoryItem>> = _listStory
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
+    val stories: LiveData<PagingData<ListStoryItem>> = repository.getStories().cachedIn(viewModelScope)
+
     companion object{
         private const val TAG = "MainViewModel"
     }
+
+
 
     fun findStories(token : String) {
         _isLoading.value = true

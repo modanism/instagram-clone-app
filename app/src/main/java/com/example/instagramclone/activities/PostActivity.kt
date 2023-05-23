@@ -98,7 +98,7 @@ class PostActivity : AppCompatActivity() {
         }
 
         val pref = UserPreferences.getInstance(dataStore)
-        val authViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(
+        val authViewModel = ViewModelProvider(this, ViewModelFactory(pref, this)).get(
             AuthViewModel::class.java
         )
 

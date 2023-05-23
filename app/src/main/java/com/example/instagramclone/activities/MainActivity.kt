@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -13,6 +14,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.instagramclone.ListStoryItem
 import com.example.instagramclone.UserPreferences
+import com.example.instagramclone.adapters.ListStoryAdapter
+import com.example.instagramclone.adapters.LoadingStateAdapter
 import com.example.instagramclone.adapters.StoryAdapter
 import com.example.instagramclone.databinding.ActivityMainBinding
 import com.example.instagramclone.models.AuthViewModel
@@ -26,6 +29,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+    private val mainViewModel by viewModels<MainViewModel>()
+
 
     companion object {
         const val EXTRA_USER = "extra_user"
@@ -36,12 +41,17 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val layoutManager = LinearLayoutManager(this)
+        binding.rvStory.layoutManager = layoutManager
+
+        setupViewModel()
+        getAllStories()
 
         val mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
             MainViewModel::class.java)
 
         val pref = UserPreferences.getInstance(dataStore)
-        val authViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(
+        val authViewModel = ViewModelProvider(this, ViewModelFactory(pref,this)).get(
             AuthViewModel::class.java
         )
 
@@ -53,21 +63,20 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        authViewModel.getAuthSettings().observe(this) { authData ->
-            mainViewModel.findStories(authData.token)
-            mainViewModel.listStory.observe(this) {
-                setStoryData(it)
-            }
-        }
+//        authViewModel.getAuthSettings().observe(this) { authData ->
+//            mainViewModel.findStories(authData.token)
+//            mainViewModel.listStory.observe(this) {
+//                setStoryData(it)
+//            }
+//        }
 
 
 
-        mainViewModel.isLoading.observe(this) {
-            showLoading(it)
-        }
+//        mainViewModel.isLoading.observe(this) {
+//            showLoading(it)
+//        }
 
-        val layoutManager = LinearLayoutManager(this)
-        binding.rvStory.layoutManager = layoutManager
+
 
         binding.myFloatingButton.setOnClickListener {
             val postIntent = Intent(this, PostActivity::class.java)
@@ -96,6 +105,24 @@ class MainActivity : AppCompatActivity() {
         }
 
         onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
+
+    }
+
+    private fun setupViewModel() {
+        ViewModelProvider(this,ViewModelFactory(UserPreferences.getInstance(dataStore),this))[MainViewModel::class.java]
+    }
+
+    private fun getAllStories() {
+        val listStoryAdapter = ListStoryAdapter()
+        binding.rvStory.adapter = listStoryAdapter.withLoadStateFooter(
+            footer = LoadingStateAdapter{
+                listStoryAdapter.retry()
+            }
+        )
+        mainViewModel.stories.observe(this) {story ->
+            listStoryAdapter.submitData(lifecycle, story)
+        }
+
 
     }
 

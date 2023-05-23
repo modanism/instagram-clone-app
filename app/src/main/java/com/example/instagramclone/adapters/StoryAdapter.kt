@@ -1,6 +1,7 @@
 package com.example.instagramclone.adapters
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -9,16 +10,21 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.instagramclone.ListStoryItem
 import com.example.instagramclone.R
 import com.example.instagramclone.activities.DetailActivity
+import com.example.instagramclone.getElapsedTimeSinceDate
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 import java.util.TimeZone
 
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 class StoryAdapter(private val listStory : List<ListStoryItem>) : RecyclerView.Adapter<StoryAdapter.ViewHolder>() {
 
@@ -57,29 +63,7 @@ class StoryAdapter(private val listStory : List<ListStoryItem>) : RecyclerView.A
         val tvDateItem : TextView = view.findViewById(R.id.tv_item_date)
     }
 
-    fun getElapsedTimeSinceDate(dateString: String): String {
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US)
-        dateFormat.timeZone = TimeZone.getTimeZone("UTC")
-        val date = dateFormat.parse(dateString)
 
-        val timeZoneWIB = TimeZone.getTimeZone("GMT+7")
-        val calendar = Calendar.getInstance()
-        calendar.timeZone = timeZoneWIB
-        val currentTime = calendar.time
-
-        val elapsedTimeInMillis = currentTime.time - date.time
-        val elapsedTimeInSeconds = elapsedTimeInMillis / 1000
-
-        val minutes = elapsedTimeInSeconds / 60
-        val hours = minutes / 60
-        val days = hours / 24
-
-        return when {
-            days > 0 -> "$days days ago"
-            hours > 0 -> "$hours hours ago"
-            else -> "$minutes minutes ago"
-        }
-    }
 
 
 }

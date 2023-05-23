@@ -18,4 +18,6 @@
     <string name="text_to_register">Belum punya akun?&#160;</string>
     <string name="content_desc_post_button">Tombol membagi cerita</string>
     <string name="text_to_login">Sudah punya akun?&#160;</string>
+    <string name="title_activity_maps">Dimana mereka?</string>
+    <string name="retry">Coba Lagi</string>
 </resources>

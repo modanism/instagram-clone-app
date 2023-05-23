@@ -16,6 +16,14 @@ interface ApiService {
         @Query("location") location: Int? = 1
     ) : Call<StoryResponse>
 
+    @GET("stories")
+    suspend fun getAllStories(
+        @Header("Authorization") token: String,
+        @Query("page") page: Int,
+        @Query("size") size: Int,
+        @Query("location") location: Int? = 1
+    ) : StoryResponse
+
     @FormUrlEncoded
     @POST("login")
     fun login(

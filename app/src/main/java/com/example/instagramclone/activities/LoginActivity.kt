@@ -40,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val pref = UserPreferences.getInstance(dataStore)
-        val authViewModel = ViewModelProvider(this@LoginActivity, ViewModelFactory(pref)).get(
+        val authViewModel = ViewModelProvider(this@LoginActivity, ViewModelFactory(pref, this@LoginActivity)).get(
             AuthViewModel::class.java
         )
 
@@ -84,7 +84,7 @@ class LoginActivity : AppCompatActivity() {
                 val responseBody = response.body()
                 if (response.isSuccessful && responseBody != null) {
                     val pref = UserPreferences.getInstance(dataStore)
-                    val authViewModel = ViewModelProvider(this@LoginActivity, ViewModelFactory(pref)).get(
+                    val authViewModel = ViewModelProvider(this@LoginActivity, ViewModelFactory(pref, this@LoginActivity)).get(
                         AuthViewModel::class.java
                     )
 

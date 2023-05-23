@@ -1,6 +1,8 @@
 package com.example.instagramclone
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
@@ -17,6 +19,7 @@ data class StoryResponse(
 )
 
 @Parcelize
+@Entity(tableName = "stories")
 data class ListStoryItem(
 
 	@field:SerializedName("photoUrl")
@@ -31,7 +34,7 @@ data class ListStoryItem(
 	@field:SerializedName("description")
 	val description: String,
 
-	@field:SerializedName("id")
+	@PrimaryKey @field:SerializedName("id")
 	val id: String,
 
 	@field:SerializedName("lat")

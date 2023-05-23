@@ -17,5 +17,6 @@
     <string name="text_to_register">Don\'t have an account?&#160;</string>
     <string name="content_desc_post_button">Post photo button</string>
     <string name="text_to_login">Already have an account?&#160;</string>
-    <string name="title_activity_maps">MapsActivity</string>
+    <string name="title_activity_maps">Where are them?</string>
+    <string name="retry">Retry</string>
 </resources>
