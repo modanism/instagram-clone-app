@@ -39,6 +39,7 @@
                     android:textColor="@color/black"
                     android:textSize="24sp" />
 
+
             </LinearLayout>
 
 
@@ -89,6 +90,7 @@
             android:background="@drawable/bg_navigation"
             android:layout_marginBottom="20dp"
             app:tint="@color/white" />
+
         <ImageButton
             android:id="@+id/my_floating_button"
             android:layout_width="60dp"
@@ -97,9 +99,10 @@
             android:src="@drawable/ic_add"
             android:background="@drawable/bg_navigation"
             android:layout_marginBottom="20dp"
-
             app:tint="@color/white"/>
+
         <ImageButton
+            android:id="@+id/action_profile"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:scaleType="fitCenter"

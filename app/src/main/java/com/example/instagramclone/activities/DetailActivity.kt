@@ -21,6 +21,7 @@ class DetailActivity : AppCompatActivity() {
         const val EXTRA_IMAGE = "extra_image"
         const val EXTRA_USERNAME = "extra_username"
         const val EXTRA_DESCRIPTION = "extra_description"
+        const val EXTRA_DATE = "extra_date"
 
 
     }
@@ -31,36 +32,42 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        val storyData = if (Build.VERSION.SDK_INT >= 33) {
-            intent.getParcelableExtra(EXTRA_STORY, ListStoryItem::class.java)
-        } else {
-            @Suppress("DEPRECATION")
-            intent.getParcelableExtra(EXTRA_STORY)
-        }
+//        val  = if (Build.VERSION.SDK_INT >= 33) {
+//            intent.getParcelableExtra(EXTRA_STORY, ListStoryItem::class.java)
+//        } else {
+//            @Suppress("DEPRECATION")
+//            intent.getParcelableExtra(EXTRA_STORY)
+//        }
+
+        val name = intent.getStringExtra(EXTRA_USERNAME)
+        val description = intent.getStringExtra(EXTRA_DESCRIPTION)
+        val photoUrl = intent.getStringExtra(EXTRA_IMAGE)
+        val createdAt = intent.getStringExtra(EXTRA_DATE)
 
 
-        if (storyData != null) {
 
-            val caption = "${storyData.name} ${storyData.description}"
-            val startIndex = caption.indexOf(storyData.name)
-            val endIndex = startIndex + storyData.name.length
+
+
+            val caption = "${name} ${description}"
+            val startIndex = caption.indexOf(name!!)
+            val endIndex = startIndex + name.length
 
             val spannableString = SpannableString(caption)
             spannableString.setSpan(StyleSpan(1), startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
             binding.apply {
                 Glide.with(this@DetailActivity)
-                    .load(storyData.photoUrl)
+                    .load(photoUrl)
                     .centerCrop()
                     .into(ivDetail)
-                tvDetailDate.text = formatDate(storyData.createdAt)
+                tvDetailDate.text = formatDate(createdAt!!)
                 tvDetailDesc.text = spannableString
-                tvUsername.text = storyData.name
+                tvUsername.text = name
                 actionBack.setOnClickListener {
                     finishAfterTransition()
                 }
             }
-        }
+
 
     }
 
@@ -69,7 +76,7 @@ class DetailActivity : AppCompatActivity() {
         val outputDateFormat = SimpleDateFormat("MMMM dd, yyyy", Locale.getDefault())
 
         val inputDate = inputDateFormat.parse(date)
-        val outputDate = outputDateFormat.format(inputDate)
+        val outputDate = outputDateFormat.format(inputDate!!)
         return outputDate.uppercase()
     }
 

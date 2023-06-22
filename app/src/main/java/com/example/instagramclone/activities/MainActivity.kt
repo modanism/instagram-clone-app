@@ -87,9 +87,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         pagingViewModel.stories.observe(this) {
-            Log.d(TAG, "Data : ${it} ")
             adapter.submitData(lifecycle,it)
-            Log.d(TAG, "HEREEEE")
         }
 
         adapter.setOnItemClickCallback(object : ListStoriesAdapter.OnItemClickCallback {
@@ -98,6 +96,7 @@ class MainActivity : AppCompatActivity() {
                     it.putExtra(DetailActivity.EXTRA_IMAGE, data.photoUrl)
                     it.putExtra(DetailActivity.EXTRA_USERNAME, data.name)
                     it.putExtra(DetailActivity.EXTRA_DESCRIPTION, data.description)
+                    it.putExtra(DetailActivity.EXTRA_DATE, data.createdAt)
                     startActivity(it)
                 }
             }
@@ -125,9 +124,15 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        binding.actionLogout.setOnClickListener {
-            authViewModel.removeAuthSetting()
+        binding.actionProfile.setOnClickListener {
+            val profileIntent = Intent(this,ProfileActivity::class.java)
+            profileIntent.putExtra(ProfileActivity.EXTRA_USERNAME, userData.name)
+            startActivity(profileIntent)
         }
+
+
+
+
 
 
 

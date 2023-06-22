@@ -90,7 +90,6 @@ class RegisterActivity : AppCompatActivity() {
                 ) {
                     val responseBody = response.body()
                     if (response.isSuccessful && responseBody != null && !responseBody.error) {
-                        Log.e(TAG, responseBody.toString())
                         val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
                         startActivity(intent)
                         finish()

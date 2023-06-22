@@ -14,7 +14,6 @@ class ViewModelFactory(private val pref: UserPreferences ?= null, private val ap
                        private val token: String ?= null) : ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(PagingViewModel::class.java)) {
-            Log.d("TOKEN", "$token")
             return PagingViewModel(application!!, Injection.provideRepository(context!!), token!!) as T
         }
         else if (modelClass.isAssignableFrom(AuthViewModel::class.java)) {

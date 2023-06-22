@@ -122,12 +122,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             intent.getParcelableExtra(EXTRA_STORY)
         }
         val listStory = storyData as List<ListStoryItem>
-        Log.d(TAG, "token: $listStory")
 
 
         listStory.forEach { item ->
             val latLng = LatLng(item.lat, item.lon)
-            Log.d("TEST",latLng.toString())
             val addressName = getAddressName(item.lat, item.lon)
             mMap.addMarker(MarkerOptions().position(latLng).title(addressName))
             boundsBuilder.include(latLng)

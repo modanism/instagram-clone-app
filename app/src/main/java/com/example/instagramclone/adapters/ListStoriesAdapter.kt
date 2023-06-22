@@ -37,7 +37,6 @@ class ListStoriesAdapter :
     inner class ListViewHolder(private var binding: ItemRowStoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(story: ListStoryItem) {
-            Log.d("MainActivty", "bind: ${story}")
             binding.root.setOnClickListener {
                 onItemClickCallback?.onItemClicked(story)
             }
@@ -54,7 +53,6 @@ class ListStoriesAdapter :
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ListViewHolder {
-        Log.d("Adapter", "onCreateViewHolder: CREATED")
         val binding =
             ItemRowStoryBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         return ListViewHolder(binding)
@@ -82,64 +80,3 @@ class ListStoriesAdapter :
         }
     }
 }
-
-//class ListStoriesAdapter : PagingDataAdapter<ListStoryItem, ListStoriesAdapter.ListViewHolder>(DIFF_CALLBACK) {
-//
-//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-//        val binding =
-//            ItemRowStoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-//
-//        return ListViewHolder(binding)
-//    }
-//
-//    override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-//        val data = getItem(position)
-//        if (data != null) {
-//            holder.bind(data)
-//        }
-//    }
-//
-//    inner class ListViewHolder(
-//        var binding: ItemRowStoryBinding
-//    ) : RecyclerView.ViewHolder(binding.root) {
-//
-////        init {
-////            itemView.rootView.setOnClickListener { itemRootView ->
-////                val story = getItem(bindingAdapterPosition)
-////                story?.let {
-////                    onItemClick?.invoke(itemRootView, it)
-////                }
-////            }
-////        }
-//
-//        fun bind(data: ListStoryItem) {
-//            Log.d(TAG, data.toString())
-//            binding.apply {
-//                Glide.with(itemView)
-//                    .load(data.photoUrl)
-//                    .into(imgItemPhoto)
-//
-//                tvItemAuthor.text = data.name
-//                tvItemDate.text = getElapsedTimeSinceDate(data.createdAt)
-//            }
-//        }
-//    }
-//
-//    companion object {
-//
-//        const val TAG = "Adapter"
-//
-//        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ListStoryItem>() {
-//            override fun areItemsTheSame(oldItem: ListStoryItem, newItem: ListStoryItem): Boolean {
-//                return oldItem == newItem
-//            }
-//
-//            override fun areContentsTheSame(
-//                oldItem: ListStoryItem,
-//                newItem: ListStoryItem
-//            ): Boolean {
-//                return oldItem.id == newItem.id
-//            }
-//        }
-//    }
-//}

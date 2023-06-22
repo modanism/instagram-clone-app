@@ -19,4 +19,5 @@
     <string name="text_to_login">Already have an account?&#160;</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="retry">Retry</string>
+    <string name="profile">Profile</string>
 </resources>
