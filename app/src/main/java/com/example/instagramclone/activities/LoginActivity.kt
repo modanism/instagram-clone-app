@@ -18,6 +18,8 @@ import com.example.instagramclone.UserPreferences
 import com.example.instagramclone.databinding.ActivityLoginBinding
 import com.example.instagramclone.models.AuthViewModel
 import com.example.instagramclone.network.ApiConfig
+import com.example.instagramclone.utils.UserModel
+import com.example.instagramclone.utils.UserSharedPreferences
 import com.example.instagramclone.utils.ViewModelFactory
 import retrofit2.Call
 import retrofit2.Callback
@@ -87,8 +89,12 @@ class LoginActivity : AppCompatActivity() {
                     val authViewModel = ViewModelProvider(this@LoginActivity, ViewModelFactory(pref)).get(
                         AuthViewModel::class.java
                     )
-
                     authViewModel.saveAuthSetting(responseBody.loginResult.name!!, responseBody.loginResult.userId!!, responseBody.loginResult.token!!)
+
+                    val userSharedPreference = UserSharedPreferences(application)
+                    val user = UserModel(responseBody.loginResult.name!!, responseBody.loginResult.token!!,true)
+                    userSharedPreference.setUser(user)
+
                     showLoading(false)
                     Toast.makeText(this@LoginActivity, "Login succeeded", Toast.LENGTH_SHORT).show()
 

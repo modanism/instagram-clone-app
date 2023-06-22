@@ -94,6 +94,8 @@ class PostActivity : AppCompatActivity() {
         binding.cameraButton.setOnClickListener { startTakePhoto() }
         binding.galleryButton.setOnClickListener { startGallery() }
         binding.actionBack.setOnClickListener {
+            val homeIntent = Intent(this,MainActivity::class.java)
+            startActivity(homeIntent)
             finish()
         }
 
@@ -158,6 +160,8 @@ class PostActivity : AppCompatActivity() {
                         val responseBody = response.body()
                         if (responseBody != null && !responseBody.error) {
                             Toast.makeText(this@PostActivity, responseBody.message, Toast.LENGTH_SHORT).show()
+                            val homeIntent = Intent(this@PostActivity, MainActivity::class.java)
+                            startActivity(homeIntent)
                             finish()
 
                         }

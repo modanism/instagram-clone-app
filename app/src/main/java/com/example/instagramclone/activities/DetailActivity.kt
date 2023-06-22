@@ -18,6 +18,11 @@ class DetailActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_STORY = "extra_story"
+        const val EXTRA_IMAGE = "extra_image"
+        const val EXTRA_USERNAME = "extra_username"
+        const val EXTRA_DESCRIPTION = "extra_description"
+
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
